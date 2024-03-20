@@ -77,7 +77,7 @@ Testing web apps
     <div class="tooltip"><button class="type-button" onclick="setType('Infrastructure')">🏭<span class="tooltiptext">Infrastructure</span></button></div>
     <div class="tooltip"><button class="type-button" onclick="setType('Transportation')">🚎<span class="tooltiptext">Transportation</span></button></div>
     <div class="tooltip"><button class="type-button" onclick="setType('Employment')">💼<span class="tooltiptext">Employment</span></button></div>
-    <div class="tooltip"><button class="type-button" onclick="setType('Parks & Nature')">🌳<span class="tooltiptext">Parks & Nature</span></button></div>
+    <div class="tooltip"><button class="type-button" onclick="setType('Parks and Nature')">🌳<span class="tooltiptext">Parks & Nature</span></button></div>
 </div>
 <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiaWFubWFoZXIzaiIsImEiOiJjbHRnM2g3Mmgwdm50MmpxcjNiaHppcGF0In0.EDCKHSTyRqogqjRVwC5pJA';
@@ -89,7 +89,54 @@ Testing web apps
         zoom: 12,
         doubleClickZoom: false // Disable zoom on double click
     });
+    
+    map.on('load', () => {
+        map.addSource('lapine-comments', {
+            type: 'geojson',
+            data: 'https://services3.arcgis.com/pZZTDhBBLO3B9dnl/arcgis/rest/services/LaPineComments/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=geojson'
+        });
 
+        map.addLayer({
+            id: 'lapine-comments-layer',
+            type: 'circle',
+            source: 'lapine-comments',
+            paint: {
+                // Use a match expression to dynamically set circle color based on the 'type' property
+                'circle-color': [
+                    'match',
+                    ['get', 'Type'],
+                    'Housing', '#FF5733',
+                    'Infrastructure', '#3498DB',
+                    'Transportation', '#E3F710',
+                    'Employment', '#800080',
+                    'Parks and Nature', '#00FF00',
+                    /* other */ '#000'
+                ],
+                'circle-radius': 6,
+                'circle-stroke-width': 2,
+                'circle-stroke-color': 'white'
+            }
+        });
+
+        // Add a click event listener for displaying popups
+        map.on('click', 'lapine-comments-layer', (e) => {
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const description = `<strong>${e.features[0].properties.Type}</strong><br>${e.features[0].properties.Comment}`;
+
+            // Ensure that if the map is zoomed out such that multiple
+            // copies of the feature are visible, the popup appears
+            // over the copy being pointed to.
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(description)
+                .addTo(map);
+        });
+    });
+  
     let selectedType = 'Housing'; // Default type
 
     function setType(type) {
@@ -126,10 +173,10 @@ Testing web apps
             case 'Infrastructure':
                 return '#3498DB'; // Blue
             case 'Transportation':
-                return '#FB7105'; // Orange
+                return '#E3F710'; // Orange
             case 'Employment':
                 return '#800080'; // Purple
-            case 'Parks & Nature':
+            case 'Parks and Nature':
                 return '#00FF00'; // Bright Green
             default:
                 return '#000'; // Default black
