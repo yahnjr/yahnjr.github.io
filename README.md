@@ -50,6 +50,13 @@ Testing web apps
         height: 3px; /* Shrink circles when zoomed out */
       }
     }
+
+    /* Updated styling for the polygon layer */
+    .esri-geometry-polygon {
+      outline: red; /* Red outline */
+      fill: blue; /* Blue fill color */
+      fill-opacity: 0; /* 100% transparent */
+    }
   </style>
 </head>
 <body>
@@ -136,6 +143,26 @@ Testing web apps
 
       // Apply the renderer to the feature layer
       featureLayer.renderer = renderer;
+
+      // Add the new polygon layer with transparent fill
+      var polygonLayerUrl = "https://services3.arcgis.com/pZZTDhBBLO3B9dnl/arcgis/rest/services/La_Pine_City_Limit/FeatureServer";
+      var polygonLayer = new FeatureLayer({
+        url: polygonLayerUrl,
+        renderer: {
+          type: "simple",
+          symbol: {
+            type: "simple-fill",
+            color: [0, 0, 255, 0], // Blue fill color with transparency
+            outline: {
+              color: [255, 0, 0, 1], // Red outline with transparency
+              width: 2 // 2 pixel thick border
+            }
+          }
+        }
+      });
+
+      // Add polygon layer to map
+      map.add(polygonLayer);
 
       // Listen for double-click event
       view.on("double-click", function(event) {
