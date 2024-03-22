@@ -8,7 +8,7 @@
   <script src="https://js.arcgis.com/4.24/"></script>
   <style>
     #viewDiv {
-      height: 500px; /* Set your desired height */
+      height: 800px; /* Set your desired height */
       width: 100%; /* Adjust width as needed */
       margin: 0;
       padding: 0;
