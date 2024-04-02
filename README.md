@@ -5,7 +5,7 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>Add Points to Feature Layer</title>
   <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css">
-  <script src="https://js.arcgis.com/4.29/"></script>
+  <script defer src="https://js.arcgis.com/4.29/"></script>
   <script>
   window.addEventListener("load", function() {
   if (!localStorage.getItem("refreshed")) {
@@ -282,7 +282,7 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>Add Points to Feature Layer</title>
   <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css">
-  <script src="https://js.arcgis.com/4.29/"></script>
+  <script defer src="https://js.arcgis.com/4.29/"></script>
   <script>
   window.addEventListener("load", function() {
   if (!localStorage.getItem("refreshed")) {
