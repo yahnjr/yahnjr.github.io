@@ -375,19 +375,7 @@
   </style>
 </head>
 <body>
-  <div id="viewDiv">
-    <div class="welcome-box">
-      <p>Welcome! Please select a topic from the top right and double-click anywhere on the map to add a comment of your own. Click any other comment to view the contents. Multiple comments are welcome!</p>
-      <span class="close-button" onclick="document.querySelector('.welcome-box').style.display = 'none'">x</span>
-    </div>
-  </div>
-  <div class="topic-buttons">
-    <div class="topic-button" id="housing">🟡 Housing</div>
-    <div class="topic-button" id="infrastructure">🟣 Infrastructure</div>
-    <div class="topic-button" id="transportation">🔵 Transportation</div>
-    <div class="topic-button" id="parks">🟢 Parks & Nature</div>
-    <div class="topic-button" id="employment">🔴 Employment</div>
-  </div>
+  
 
   <script>
     require([
