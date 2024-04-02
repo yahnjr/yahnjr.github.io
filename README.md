@@ -5,7 +5,7 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>Add Points to Feature Layer</title>
   <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css">
-  <script defer src="https://js.arcgis.com/4.29/"></script>
+  <script src="https://js.arcgis.com/4.29/"></script>
   <script>
   window.addEventListener("load", function() {
   if (!localStorage.getItem("refreshed")) {
@@ -87,7 +87,7 @@
 </head>
 <body>
   
-  <script>
+  <script defer>
     require([
       "esri/Map",
       "esri/views/MapView",
@@ -282,7 +282,7 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>Add Points to Feature Layer</title>
   <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/light/main.css">
-  <script defer src="https://js.arcgis.com/4.29/"></script>
+  <script src="https://js.arcgis.com/4.29/"></script>
   <script>
   window.addEventListener("load", function() {
   if (!localStorage.getItem("refreshed")) {
@@ -377,7 +377,7 @@
     <div class="topic-button" id="employment">🔴 Employment</div>
   </div>
 
-  <script>
+  <script defer>
     require([
       "esri/Map",
       "esri/views/MapView",
