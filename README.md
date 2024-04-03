@@ -106,7 +106,7 @@
       <div class="topic-button" id="employment">🔴 Employment</div>
     </div>
 
-    <script>
+    <script async>
       require([
         "esri/Map",
         "esri/views/MapView",
