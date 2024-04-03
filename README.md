@@ -87,7 +87,7 @@
 </head>
 <body>
   
-  <script>
+  <script defer>
     require([
       "esri/Map",
       "esri/views/MapView",
